@@ -38,6 +38,9 @@ RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-octomap ros-${R
 # install rviz2
 RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rviz2 
 
+# install rqt
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rqt-common-plugins
+
 # add the ros2 sourcing to bashrc
 RUN echo "source /opt/ros/galactic/setup.bash" >> /root/.bashrc
 RUN echo "source /root/colcon_ws/install/setup.bash" >> /root/.bashrc
