@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  realsense:
+    build: .
+    tty: true
+    
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./colcon_ws:/root/colcon_ws
+
+    environment:
+      DISPLAY: ${DISPLAY}
+    
+    privileged: true
+    network_mode: "host"  
+

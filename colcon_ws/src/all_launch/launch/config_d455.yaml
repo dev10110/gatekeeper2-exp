@@ -1,0 +1,8 @@
+camera:
+        ros__parameters:
+                # rgb_camera.profile: "640x480x30"
+                # depth_module.profile: "640x480x30"
+                # align_depth.enable: true
+                diagnostics_period: 1.0
+                pointcloud.enable: true
+                
