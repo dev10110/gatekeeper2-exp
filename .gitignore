@@ -1,4 +1,4 @@
-colcon_ws/build
-colcon_ws/log
-colcon_ws/install
+build
+log
+install
 __pycache__

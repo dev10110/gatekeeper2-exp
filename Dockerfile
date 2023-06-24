@@ -1,5 +1,6 @@
 # FROM osrf/ros:galactic-desktop
-FROM ros:galactic
+# FROM ros:galactic
+FROM ros:humble-perception
 
 SHELL ["/bin/bash", "-c"]
 
@@ -42,7 +43,7 @@ RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rviz2
 RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rqt-common-plugins
 
 # add the ros2 sourcing to bashrc
-RUN echo "source /opt/ros/galactic/setup.bash" >> /root/.bashrc
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 RUN echo "source /root/colcon_ws/install/setup.bash" >> /root/.bashrc
 
 

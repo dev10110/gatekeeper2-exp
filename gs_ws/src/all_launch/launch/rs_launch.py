@@ -7,10 +7,11 @@ def generate_launch_description():
             package="realsense2_camera",
             executable="realsense2_camera_node",
             parameters=[
-                    {"depth_module.profile": "848x480x30"},
+                    # {"depth_module.profile": "848x480x30"},
+                    {"depth_module.profile": "640x480x15"},
                     {"initial_reset": True},
                     {"depth_qos": "SENSOR_DATA"},
-                    {"enable_color": True},
+                    {"enable_color": False},
                     {"pointcloud.enable": True},
                 ]
             )

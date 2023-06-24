@@ -1,3 +1,6 @@
 [submodule "colcon_ws/src/ros2-vicon-receiver"]
-	path = colcon_ws/src/ros2-vicon-receiver
+	path = gs_ws/src/ros2-vicon-receiver
 	url = https://github.com/dasc-lab/ros2-vicon-receiver
+[submodule "colcon_ws/src/DecompROS2/DecompUtil"]
+	path = gs_ws/src/DecompROS2/DecompUtil
+	url = git@github.com:sikang/DecompUtil.git

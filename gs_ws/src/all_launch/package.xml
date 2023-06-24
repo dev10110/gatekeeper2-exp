@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="3">
+	<name>all_launch</name>
+	<version>0.1.1</version>
+	<description>d</description>
+	<maintainer email="devansh@umich.edu">dev</maintainer>
+	<license>MIT</license>
+	<buildtool_depend>ament_cmake</buildtool_depend>
+	<export>
+		<build_type>ament_cmake</build_type>
+	</export>
+</package>
