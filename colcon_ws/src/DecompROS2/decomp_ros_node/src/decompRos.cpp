@@ -12,14 +12,10 @@ namespace decompros
 		: Node("decompROS")
 	{
 
-		RCLCPP_INFO(this->get_logger(), "WEEEEEE");
+		RCLCPP_INFO(this->get_logger(), "Started SFC node");
 
 		using std::placeholders::_1;
-		//using std::placeholders::_2;
-		//using std::chrono_literals::operator""s;
-
 		// create publishers
-	
 	polygon_publisher_ = this-> create_publisher<geometry_msgs::msg::PolygonStamped>("safe_flight_cooridor_polygon", 10);	
 	debug_publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud>("fov_obs", 10);
 
@@ -37,7 +33,7 @@ namespace decompros
 
 		auto start = std::chrono::high_resolution_clock::now();
 
-		//RCLCPP_INFO(this->get_logger(), "I got a pc with %u width and %u height", msg->width, msg->height);
+		//RCLCPP_WARN(this->get_logger(), "I got a pc with %u width and %u height", msg->width, msg->height);
 
 		PCLPointCloud pc;
 		pcl::fromROSMsg(*msg, pc);
@@ -46,7 +42,7 @@ namespace decompros
 
 		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(now - start);
 
-          	RCLCPP_INFO(this->get_logger(), "pcl pc has %zu points and took %lu us", pc.size(), dur.count());
+          	RCLCPP_WARN(this->get_logger(), "pcl pc has %zu points and took %lu us", pc.size(), dur.count());
 
 		//// filter based on z (only keep nearest 5 m and discard everything within 0.25 m
 		//pcl::PassThrough<pcl::PointXYZ> pass;
@@ -81,7 +77,7 @@ namespace decompros
 
 		now = std::chrono::high_resolution_clock::now();
 		dur = std::chrono::duration_cast<std::chrono::microseconds>(now - start);
-          	RCLCPP_INFO(this->get_logger(), "pcl pc has %zu points and took %lu us", pc.size(), dur.count());
+          	RCLCPP_WARN(this->get_logger(), "pcl pc has %zu points and took %lu us", pc.size(), dur.count());
 
 		// ADD ALL THE REALSENSE OBSTACLES
 		vec_Vec3f obs;
@@ -161,7 +157,7 @@ namespace decompros
 
 		now = std::chrono::high_resolution_clock::now();
 		dur = std::chrono::duration_cast<std::chrono::microseconds>(now - start);
-          	RCLCPP_INFO(this->get_logger(), "make obs list: %lu us", dur.count());
+          	RCLCPP_WARN(this->get_logger(), "make obs list: %lu us", dur.count());
 
 
 		// now actually construct the sfc
@@ -172,13 +168,13 @@ namespace decompros
 
 		auto poly =  decomp.get_polyhedron();
 
-		RCLCPP_INFO(this->get_logger(), "decomp worked");
+		RCLCPP_WARN(this->get_logger(), "decomp worked");
 		
 		now = std::chrono::high_resolution_clock::now();
 
 		dur = std::chrono::duration_cast<std::chrono::microseconds>(now - start);
 
-          	RCLCPP_INFO(this->get_logger(), "fin: %lu", dur.count());
+          	RCLCPP_WARN(this->get_logger(), "fin: %lu", dur.count());
 
 
 		// now we try and visualize it in rviz
@@ -203,9 +199,9 @@ namespace decompros
 				msg_poly.polygon.points.push_back(p);
 			}
 		}
-		RCLCPP_INFO(this->get_logger(), "msg_poly has %zu points", msg_poly.polygon.points.size());
+		RCLCPP_WARN(this->get_logger(), "msg_poly has %zu points", msg_poly.polygon.points.size());
 
-		RCLCPP_INFO(this->get_logger(), "\n\n\n");
+		RCLCPP_WARN(this->get_logger(), "\n\n\n");
 
 
 		// publish the polygon
