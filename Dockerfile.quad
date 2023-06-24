@@ -1,0 +1,30 @@
+# FROM osrf/ros:galactic-desktop
+# FROM ros:galactic
+FROM ros:humble-perception
+
+SHELL ["/bin/bash", "-c"]
+
+# vim and tmux
+RUN apt-get update && apt-get install -y vim tmux curl
+
+## install realsense
+RUN apt-get install -y  ros-${ROS_DISTRO}-realsense2-camera
+
+# install perception helpers
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-perception-pcl
+
+# install octomap
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-octomap ros-${ROS_DISTRO}-octomap-mapping
+
+# install rviz2
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rviz2 
+
+# install rqt
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rqt-common-plugins
+
+# add the ros2 sourcing to bashrc
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+RUN echo "source /root/colcon_ws/install/setup.bash" >> /root/.bashrc
+
+
+WORKDIR "/root/colcon_ws"
