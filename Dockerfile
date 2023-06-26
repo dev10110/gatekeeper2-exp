@@ -42,9 +42,14 @@ RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rviz2
 # install rqt
 RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-rqt-common-plugins
 
+## install joy
+RUN apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-joy
+
 # add the ros2 sourcing to bashrc
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 RUN echo "source /root/colcon_ws/install/setup.bash" >> /root/.bashrc
 
+ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
 WORKDIR "/root/colcon_ws"
